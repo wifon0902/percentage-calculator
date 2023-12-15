@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Percentage Calculator</title>
+  <style>
+    #percentage {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <input placeholder="Ilość punktów" id="points">
+  <input placeholder="Maksymalna ilość punktów" id="max-points">
+  <button id="button">Oblicz</button>
+  <div id="percentage"></p>
+  
+  <script>
+    const button = document.querySelector('#button');
+    const output = document.querySelector('#percentage');
+
+    button.addEventListener('click', () => {
+      let outputHTML = '';
+      const points = document.querySelector('#points').value;
+      const max = Number(document.querySelector('#max-points').value);
+      
+      const arr = points.split(' ');
+      let percentage;
+
+      if(arr.length === 1) {
+        percentage = ((points/max)*100).toFixed();
+
+        outputHTML += `
+            <span>${percentage}%</span>
+          `;
+          
+          output.innerHTML = outputHTML;
+
+      } else {
+        arr.forEach((points) => {
+          percentage = ((points/max)*100).toFixed();
+
+          outputHTML += `
+            <span>${percentage}%</span>
+          `;
+
+          output.innerHTML = outputHTML;
+        }
+        )};
+    });
+  </script>
+</body>
+</html>
