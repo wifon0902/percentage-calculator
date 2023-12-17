@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Percentage Calculator</title>
   <style>
-    #percentage {
+    #table {
       display: flex;
       flex-direction: column;
     }
@@ -15,11 +15,11 @@
   <input placeholder="Ilość punktów" id="points">
   <input placeholder="Maksymalna ilość punktów" id="max-points">
   <button id="button">Oblicz</button>
-  <div id="percentage"></p>
+  <div id="table"></p>
   
   <script>
     const button = document.querySelector('#button');
-    const output = document.querySelector('#percentage');
+    const output = document.querySelector('#table');
 
     button.addEventListener('click', () => {
       let outputHTML = '';
@@ -29,26 +29,15 @@
       const arr = points.split(' ');
       let percentage;
 
-      if(arr.length === 1) {
+      arr.forEach((points) => {
         percentage = ((points/max)*100).toFixed();
 
         outputHTML += `
-            <span>${percentage}%</span>
-          `;
-          
-          output.innerHTML = outputHTML;
+          <div>${percentage}%</div>
+        `;
 
-      } else {
-        arr.forEach((points) => {
-          percentage = ((points/max)*100).toFixed();
-
-          outputHTML += `
-            <span>${percentage}%</span>
-          `;
-
-          output.innerHTML = outputHTML;
-        }
-        )};
+        output.innerHTML = outputHTML;
+      });
     });
   </script>
 </body>
