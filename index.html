@@ -18,14 +18,14 @@
     }
 
     .insert-data {
-      max-width: 400px;
+      max-width: 450px;
       max-height: 300px;
       display: flex;
       flex-direction: column;
       gap: 20px;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       padding: 30px;
-      border-radius: 25px;;
+      border-radius: 25px;
     }
 
     .input {
@@ -52,17 +52,28 @@
 
     #table {
       display: grid;
-      grid-template-columns: 150px 150px 100px;
-      max-width: 400px;
-      max-height: 300px;
+      grid-template-columns: 150px 150px 150px;
+      max-width: 450px;
+      max-height: 400px;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       text-align: center;
+      padding: 30px;
+      border-radius: 25px;
+      margin-top: 50px;
     }
 
     #output {
       display: grid;
-      grid-template-columns: 150px 150px 100px;
+      grid-template-columns: 150px 150px 150px;
       text-align: center;
+      gap: 10px;
+      max-height: 300px;
+      width: fit-content;
+      overflow-y: scroll;
+    }
+
+    .table-label {
+      font-size: 20px;
     }
   </style>
 </head>
@@ -76,9 +87,9 @@
   </div>
 
   <div id="table">
-    <p>Maksymalna ilość</p>
-    <p>Liczba punktów</p>
-    <p>Procent</p>
+    <p class="table-label">Maksymalna ilość</p>
+    <p class="table-label">Liczba punktów</p>
+    <p class="table-label">Ocena (%)</p>
     <div id="output"></div>
   </div>
   
@@ -90,21 +101,25 @@
       let outputHTML = '';
       const points = document.querySelector('#points').value;
       const max = Number(document.querySelector('#max-points').value);
-      
-      const arr = points.split(' ');
-      let percentage;
 
-      arr.forEach((points) => {
-        percentage = ((points/max)*100).toFixed();
-
-        outputHTML += `
-          <div>${max}</div>
-          <div>${points}</div>
-          <div>${percentage}%</div>
-        `;
-
-        output.innerHTML = outputHTML;
-      });
+      if(!points || !max) {
+        return;
+      } else {
+        const arr = points.split(' ');
+        let percentage;
+  
+        arr.forEach((points) => {
+          percentage = ((points/max)*100).toFixed();
+  
+          outputHTML += `
+            <div>${max}</div>
+            <div>${points}</div>
+            <div>${percentage}%</div>
+          `;
+  
+          output.innerHTML = outputHTML;
+        });
+      }
     });
   </script>
 </body>
