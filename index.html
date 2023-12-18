@@ -17,11 +17,19 @@
       --accent-hover: #1163ce;
     }
 
+    .container {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      gap: 10%;
+    }
+
     .insert-data {
-      max-width: 450px;
-      max-height: 300px;
+      width: 25%;
+      height: 200px;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       gap: 20px;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       padding: 30px;
@@ -51,46 +59,55 @@
     }
 
     #table {
+      justify-content: center;
       display: grid;
-      grid-template-columns: 150px 150px 150px;
-      max-width: 450px;
-      max-height: 400px;
+      grid-template-columns: 200px 200px 200px;
+      width: 30%;
+      max-height: 600px;
+      height: fit-content;
       box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
       text-align: center;
       padding: 30px;
       border-radius: 25px;
-      margin-top: 50px;
     }
 
     #output {
       display: grid;
-      grid-template-columns: 150px 150px 150px;
+      grid-template-columns: 200px 200px 200px;
       text-align: center;
-      gap: 10px;
-      max-height: 300px;
+      row-gap: 10px;
+      max-height: 400px;
       width: fit-content;
       overflow-y: scroll;
     }
 
     .table-label {
       font-size: 20px;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    .rows-text {
+      font-size: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="insert-data">
-    <input class="input" placeholder="Ilość punktów" id="points">
-
-    <input class="input" placeholder="Maksymalna ilość punktów" id="max-points">
-
-    <button id="button">Oblicz</button>
-  </div>
-
-  <div id="table">
-    <p class="table-label">Maksymalna ilość</p>
-    <p class="table-label">Liczba punktów</p>
-    <p class="table-label">Ocena (%)</p>
-    <div id="output"></div>
+  <div class="container">
+    <div class="insert-data">
+      <input class="input" placeholder="Ilość punktów" id="points">
+  
+      <input class="input" placeholder="Maksymalna ilość punktów" id="max-points">
+  
+      <button id="button">Oblicz</button>
+    </div>
+  
+    <div id="table">
+      <p class="table-label">Maksymalna ilość</p>
+      <p class="table-label">Liczba punktów</p>
+      <p class="table-label">Ocena (%)</p>
+      <div id="output"></div>
+    </div>
   </div>
   
   <script>
@@ -112,9 +129,9 @@
           percentage = ((points/max)*100).toFixed();
   
           outputHTML += `
-            <div>${max}</div>
-            <div>${points}</div>
-            <div>${percentage}%</div>
+            <div class="rows-text">${max}</div>
+            <div class="rows-text">${points}</div>
+            <div class="rows-text">${percentage}%</div>
           `;
   
           output.innerHTML = outputHTML;
